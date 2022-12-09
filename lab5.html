@@ -1,0 +1,101 @@
+<html>
+  <head>
+    <title>Href Attribute Example</title>
+  </head>
+  <body>
+  <br>
+<h1>Volodymyr Aldokhin IPZ-41 Lab 5 Variant 1</h1>
+<br>
+<style>
+	code {
+  font-family: Consolas,"courier new";
+  color: crimson;
+  background-color: #f1f1f1;
+  padding: 2px;
+  font-size: 105%;
+}
+</style>
+<a href="index.html"><h2>Назад</h2></a>
+<br>
+    <center><h2>Завдання</h2>
+	<br>
+	<img src="lab5_1.png"></img>
+	<br>
+	</center>
+	<center><h2>Хід роботи</h2></center>
+	<br>
+	<h3>Код програми 1</h3>
+	<pre><code>
+#lang racket
+
+;Aldokhin Volodymyr IPZ-41 Lab 5.1 variant 1
+
+(define (displayAll . vs)
+  (for-each display vs))
+
+(displayAll "\nIPZ-41 Volodymyr Aldokhin Lab 5.1 variant 1")
+(displayAll "\nYou will get answer for a/b,c/d as gcd(a, c)/lcm(b, d)")
+(printf "\nEnter a: ")
+(define a (read))
+(printf "\nEnter b: ")
+(define b (read))
+(printf "\nEnter c: ")
+(define c (read))
+(printf "\nEnter d: ")
+(define d (read))
+
+(define nokc 0)
+(define nokz 0)
+
+(define (main)
+  (displayAll "\nAnswer: " (calculate-lcm a b c d))
+  )
+
+(define (calculate-lcm a b c d) ;To find lcm for rational numbers
+  (begin
+    (set! nokz (lcm b d))
+    (set! nokc (lcm (* a (/ (lcm b d) b)) (* c (/ (lcm b d) d))))
+    (/ nokc nokz)
+    )
+  )
+  
+
+(main)
+	</code></pre>
+	<br>
+		<h3>Код програми 2</h3>
+	<pre><code>
+	
+#lang racket
+
+(define (calcSumOfFourFractions a b c d) (/ (+ (* a b c) (* d b c) (* a d c) (* a b d)) (* a b c d)))
+
+(define (isOne number)
+  (cond ((equal? number 1) (display "YES"))
+        (else (display "NO"))))
+
+(printf "\nEnter number a: ")
+(define a (read))
+(printf "\nEnter number b: ")
+(define b (read))
+(printf "\nEnter number c: ")
+(define c (read))
+(printf "\nEnter number d: ")
+(define d (read))
+
+(isOne (calcSumOfFourFractions a b c d))
+	</code></pre>
+	<br>
+	<h2>Результат до завдання 1</h2>
+	<img src="lab5_2.png"></img>
+	<br>
+	<br>
+	<h2>Результат до завдання 2</h2>
+	<img src="lab5_3.png"></img>
+	<p>Було створено додаток, що повністю відповідає заданій умові.</p>
+	<br>
+	<center><h2>Висновок<h2></center>
+	<p>Додаток відповідає встановленій умові. Було створено програму із використанням рекурсії мовою racket.</p>
+	<br>
+  </body>
+</html>

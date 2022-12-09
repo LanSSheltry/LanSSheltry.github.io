@@ -1,0 +1,127 @@
+<html>
+  <head>
+    <title>Href Attribute Example</title>
+  </head>
+  <body>
+  <br>
+<h1>Volodymyr Aldokhin IPZ-41 Lab 2 Variant 1</h1>
+<br>
+<style>
+	code {
+  font-family: Consolas,"courier new";
+  color: crimson;
+  background-color: #f1f1f1;
+  padding: 2px;
+  font-size: 105%;
+}
+</style>
+<a href="index.html"><h2>Назад</h2></a>
+<br>
+    <center><h2>Завдання</h2>
+	<br>
+	<img src="lab2_1.png"></img>
+	<br>
+	</center>
+	<center><h2>Хід роботи</h2></center>
+	<br>
+	<h3>Код програми</h3>
+	<code>
+	<blockquote>
+	#lang racket
+
+<br>(define (displayAll . vs)
+<br>  (for-each display vs))
+
+<br>; Task 1 functions
+<br>(define prec (expt 10 -6))
+
+<br>(define (fact x)
+<br>   (if (= x 0)
+<br>       1
+<br>       (* x (fact (- x 1)))
+<br>   )
+<br> )
+
+<br>(define (customCos x precision) (customCosHelper x 0 precision))
+
+<br>(define (customCosHelper x num precision)
+<br>   (let ((current (/ (expt (- (* x x)) num) (fact (* 2 num)))))
+<br>      (if (< (abs current) precision)          current
+<br>          (+ current (customCosHelper x (+ num 2) precision))
+<br>          )
+<br>     )
+<br>  )
+<br>
+<br>(define (f x)
+<br>          (if (equal? (customCos (* x x) prec) 0)
+<br>              "Nan"
+<br>  (cond
+<br>    ((and (<= -1 x) (<= x 0))
+<br>     (/ (customCos (* x 0.5) prec) (customCos (* x x) prec))
+<br>     )
+<br>    ((and (< 0 x))
+<br>     (* (customCos (* x 0.5) prec) (customCos (* x 0.5) prec) (customCos(* x 2) prec))
+<br>     )
+<br>   )))
+ 
+<br>(define (fControl x)
+<br>            (if (= (customCos (* x x) prec) 0)
+<br>              "Nan"
+<br>  (cond
+<br>    ((and (<= -1 x) (<= x 0))
+<br>     (/ (cos (* x 0.5)) (cos (* x x)))
+<br>     )
+<br>    ((and (< 0 x))
+<br>     (* (cos (* x 0.5)) (cos (* x 0.5)) (cos (* 2 x)))
+<br>     ))
+<br>   )
+<br> )
+<br>(define (task1Print a b step)
+<br>  (begin
+<br>    (if (<= a b)
+<br>    (begin
+<br>      (displayAll "Result for " a ": " (f a) ". Error: " (- (f a) (fControl a)) "\n")
+<br>      (task1Print (+ a step) b step)
+<br>     )
+<br>    (printf "End")))
+<br>)
+<br>
+<br>; Task 2 functions
+<br>
+<br>(define (chainFraction k c)
+<br>  (if (= k 3)
+<br>       (+ 1 (/ 1 c))
+<br>       (chainFraction (- k 2) (+ (- k 2) (/ 1 c)))
+<br>  )
+<br>)
+<br>; Main function sequence
+<br>(printf "\nVolodymyr Aldokhin IPZ-41 Lab 1 Variant 1")
+<br>(display "\nTask 1\n\n")
+<br>(printf "\nEnter border a: ")
+<br>(define a (read))
+<br>(printf "\nEnter border b: ")
+<br>(define b (read))
+<br>(printf "\nEnter step: ")
+<br>(define step (read))
+
+<br>(task1Print a b step)
+
+<br>(display "\nTask 2 \n\n")
+
+<br>(display "Please enter n: ")
+<br>(define n (read))
+
+<br>(displayAll "Chain fraction: " (chainFraction (+ 1 n n) (+ 1 n n)) "\n")
+
+</blockquote>
+	</code>
+	<br>
+	<h2>Результат</h2>
+	<img src="lab2_2.png"></img>
+	<p>Було створено додаток, що повністю відповідає заданій умові.</p>
+	<br>
+	<center><h2>Висновок<h2></center>
+	<p>Додаток відповідає встановленій умові. Було створено програму із використанням рекурсії мовою racket.</p>
+	<br>
+  </body>
+</html>

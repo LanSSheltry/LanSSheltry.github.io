@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <title>Href Attribute Example</title>
+  </head>
+  <body>
+  <br>
+<h1>Volodymyr Aldokhin IPZ-41 Lab 1 Variant 1</h1>
+<br>
+<style>
+	code {
+  font-family: Consolas,"courier new";
+  color: crimson;
+  background-color: #f1f1f1;
+  padding: 2px;
+  font-size: 105%;
+}
+</style>
+<a href="index.html"><h2>Назад</h2></a>
+<br>
+    <center><h2>Завдання</h2>
+	<br>
+	<img src="lab1_1.png"></img>
+	<br>
+	</center>
+	<center><h2>Хід роботи</h2></center>
+	<br>
+	<h3>Код програми</h3>
+	<code>
+	<blockquote>
+	#lang racket
+
+<br>(define (f x) 
+<br>  (if (= x 0)
+ <br>     0
+<br>      (+ (modulo x 10) (f (/ (- x (modulo x 10)) 10)))))
+
+<br>(define (degree x y) 
+<br>  (if (= y 0)
+<br>      1
+<br>      (* x (degree x (- y 1)))))
+
+<br>(define sum 1000)
+<br>(define pr 1.25)
+<br>(define t 12)
+
+<br>(define k (+ 1 (/ pr 100)))
+
+<br>(define koef (degree k t))
+
+<br>(printf "\nVolodymyr Aldokhin IPZ-41 Lab 1 Variant 1")
+<br>(printf "\ntask1: ")
+<br>(display(f 1234))
+<br>(printf "\ntask2: ")
+<br>(display (* sum koef))
+
+</blockquote>
+	</code>
+	<br>
+	<h2>Результат</h2>
+	<img src="lab1_2.png"></img>
+	<p>Було створено додаток, що повністю відповідає заданій умові.</p>
+	<br>
+	<center><h2>Висновок<h2></center>
+	<p>Додаток відповідає встановленій умові. Було створено програму із використанням рекурсії мовою racket.</p>
+	<br>
+  </body>
+</html>
