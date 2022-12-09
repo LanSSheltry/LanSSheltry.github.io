@@ -1,0 +1,115 @@
+<html>
+  <head>
+    <title>Href Attribute Example</title>
+  </head>
+  <body>
+  <br>
+<h1>Volodymyr Aldokhin IPZ-41 Lab 7 Variant 1</h1>
+<br>
+<style>
+	code {
+  font-family: Consolas,"courier new";
+  color: crimson;
+  background-color: #f1f1f1;
+  padding: 2px;
+  font-size: 105%;
+}
+</style>
+<a href="index.html"><h2>Назад</h2></a>
+<br>
+    <center><h2>Завдання</h2>
+	<br>
+	<img src="lab7_1.png"></img>
+	<br>
+	</center>
+	<center><h2>Хід роботи</h2></center>
+	<br>
+	<h3>Код програми</h3>
+	<pre><code>
+#lang racket
+
+  (require 2htdp/batch-io)
+
+(define text "«Кто управляет прошлым, – гласит партийный лозунг, – тот управляет будущим; кто управляет настоящим, тот управляет прошлым».")
+(define var "")
+(define alphabet '("а" "б" "в" "г" "д" "е" "ё" "ж" "з" "и" "й" "к" "л" "м" "н" "о" "п" "р" "с" "т" "у" "ф" "х" "ц" "ч" "ш" "щ" "ъ" "ы" "ь" "э" "ю" "я"))
+(define output "")
+(define n 2)
+
+;Lab 7 Aldokhin Volodymyr IPZ-41 variant 1
+(define (displayAll . vs)
+  (for-each display vs))
+
+  (displayAll "\nText: \n" text)
+
+(define (main)
+  (displayAll "\n\n\nVladimir Aldokhin IPZ-41 Lab 7")
+
+  (displayAll
+   "\n1 - write to file
+2 - read from file and encrypt
+Enter the variant: ")
+  (set! var (read))
+
+  (if (= var 1)
+      (begin
+      (writeToFile)
+      (readFromFile)
+      (displayAll "Input text: " text)
+      )
+      (if (= var 2)
+          (begin
+            (set! output "")
+            (printf "Enter the step 0 to 33:")
+            (set! n (read))
+            (caesar-encryption 0)
+            (writeToFile output)
+            )
+          (main)
+          )
+      )
+  
+  (main)
+  )
+
+(define (caesar-encryption idx)
+  (begin
+    (if (< idx (string-length text))
+        (begin
+          (set! output (string-append output (get-necessary-letter (string-ref text idx) 0)))
+              (caesar-encryption (+ idx 1)))
+        (displayAll "\nOriginal: " text "\nEncrypted: " output)
+        )
+    )
+  )
+
+(define (get-necessary-letter let idx)
+  (if (< idx (length alphabet))
+  (if (equal? (list-ref alphabet idx) (string let))
+        (list-ref alphabet (remainder (+ idx n) (length alphabet)))      
+      (get-necessary-letter let (+ idx 1)))
+      (string let))
+      
+  )
+
+(define (readFromFile)
+  (set! text "")
+  (set! text (string-join (read-lines "text.txt") "\n"))
+  )
+
+(define (writeToFile text1)
+(write-file "Output.txt" text1)
+  )
+
+(main)
+	</code></pre>
+	<br>
+	<h2>Результат</h2>
+	<img src="lab7_2.png"></img>
+	<p>Було створено додаток, що повністю відповідає заданій умові.</p>
+	<br>
+	<center><h2>Висновок<h2></center>
+	<p>Додаток відповідає встановленій умові. Було створено програму із використанням рекурсії мовою racket.</p>
+	<br>
+  </body>
+</html>
